@@ -206,7 +206,7 @@ def generate_report(
     for attempt in range(2):
         try:
             response = client.models.generate_content(
-                model=MODEL,
+                model="gemini-3.6-flash",
                 contents=prompt,
                 config={
                     "system_instruction": SYSTEM_INSTRUCTION,
