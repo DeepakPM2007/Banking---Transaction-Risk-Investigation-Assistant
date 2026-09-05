@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <!-- Corporate Blue background with rounded corners -->
+  <rect width="600" height="600" fill="#1e40af" rx="60"/>
+  <!-- Security Shield in white -->
+  <path d="M 300 120 L 160 170 L 160 330 C 160 450 260 520 300 560 C 340 520 440 450 440 330 L 440 170 Z" fill="#ffffff" />
+  
+  <!-- Neural Network / Analysis Nodes inside the shield -->
+  <circle cx="300" cy="250" r="35" fill="#1e40af" />
+  <circle cx="230" cy="380" r="25" fill="#3b82f6" />
+  <circle cx="370" cy="380" r="25" fill="#3b82f6" />
+  <circle cx="300" cy="450" r="20" fill="#93c5fd" />
+  
+  <!-- Connecting Lines -->
+  <line x1="285" y1="275" x2="245" y2="360" stroke="#1e40af" stroke-width="14" stroke-linecap="round"/>
+  <line x1="315" y1="275" x2="355" y2="360" stroke="#1e40af" stroke-width="14" stroke-linecap="round"/>
+  <line x1="250" y1="395" x2="285" y2="435" stroke="#3b82f6" stroke-width="14" stroke-linecap="round"/>
+  <line x1="350" y1="395" x2="315" y2="435" stroke="#3b82f6" stroke-width="14" stroke-linecap="round"/>
+  <line x1="255" y1="380" x2="345" y2="380" stroke="#3b82f6" stroke-width="8" stroke-dasharray="10, 10" stroke-linecap="round"/>
+</svg>
