@@ -74,8 +74,8 @@ def build_profile(txns: list[Transaction], customer_id: str = "") -> CustomerPro
 
     sorted_hours = sorted(hours)
     n = len(sorted_hours)
-    p10_hour = sorted_hours[max(0, int(n * 0.10))] if n else 8
-    p90_hour = sorted_hours[min(n - 1, int(n * 0.90))] if n else 22
+    p02_hour = sorted_hours[max(0, int(n * 0.02))] if n else 8
+    p98_hour = sorted_hours[min(n - 1, int(n * 0.98))] if n else 22
 
     # Payee first-seen map
     payees: dict[str, str] = {}
@@ -103,8 +103,8 @@ def build_profile(txns: list[Transaction], customer_id: str = "") -> CustomerPro
         mean_amount=round(mean_amt, 2),
         stddev_amount=round(stddev_amt, 2),
         max_amount=round(max_amt, 2),
-        active_hour_p10=p10_hour,
-        active_hour_p90=p90_hour,
+        active_hour_p10=p02_hour,
+        active_hour_p90=p98_hour,
         payees=payees,
         channel_mix=channel_mix,
         dominant_channel=dominant_channel,
@@ -206,8 +206,9 @@ def rule_odd_hours(txns: list[Transaction], profile: CustomerProfile) -> list[Fi
     Severity: Medium
     """
     findings = []
-    lo = profile.active_hour_p10
-    hi = profile.active_hour_p90
+    # Add a 1-hour buffer to prevent false positives at the very edge of the band
+    lo = max(0, profile.active_hour_p10 - 1)
+    hi = min(23, profile.active_hour_p90 + 1)
 
     triggered = [
         t for t in txns
