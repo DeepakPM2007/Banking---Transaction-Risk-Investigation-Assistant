@@ -175,6 +175,34 @@ def generate_layered_anomaly_customer(filename="layered_anomaly_customer.csv"):
     print(f"Generated {len(rows)} transactions -> {filename}")
 
 
+def generate_borderline_customer(filename="borderline_customer.csv"):
+    start = datetime(2026, 1, 1)
+    dates = date_range(start, 180)
+    rows = []
+    tid = 1
+
+    # Mostly clean data
+    for date in dates:
+        n = random.choices([0, 1], weights=[0.4, 0.6])[0]
+        for _ in range(n):
+            ch = random.choices(CHANNELS, weights=CHANNEL_WEIGHTS_CLEAN)[0]
+            amount = random.uniform(200, 3000)
+            rows.append(make_txn(f"T{tid:04d}", date, ch, amount=amount))
+            tid += 1
+
+    # Inject exactly ONE anomaly: a routine payment amount but at 3 AM (R3 Odd Hours)
+    # This will trigger Review Recommended (Yellow) but not Investigate (Red)
+    rows.append(make_txn(f"T{tid:04d}", dates[-5], "upi", payee="Zomato", amount=850.00, hour=3, desc="UPI - Late night order"))
+    tid += 1
+    
+    # Another minor one at 4 AM to ensure it flags R3 robustly
+    rows.append(make_txn(f"T{tid:04d}", dates[-2], "card", payee="Apollo Pharmacy", amount=450.00, hour=4, desc="Card POS - Pharmacy"))
+    
+    rows.sort(key=lambda r: (r["date"], r["txn_id"]))
+    write_csv(os.path.join(OUTPUT_DIR, filename), rows)
+    print(f"Generated {len(rows)} transactions -> {filename}")
+
+
 def write_csv(path, rows):
     fieldnames = ["txn_id", "date", "timestamp", "description", "payee", "amount", "channel"]
     with open(path, "w", newline="", encoding="utf-8") as f:
@@ -186,4 +214,5 @@ def write_csv(path, rows):
 if __name__ == "__main__":
     generate_clean_customer()
     generate_layered_anomaly_customer()
+    generate_borderline_customer()
     print("Done. Data written to data/customers/")
