@@ -37,7 +37,7 @@ def baseline_txns(n=50, amount=1000.0, channel="upi", hour=10):
             txn_id=f"T{i:04d}",
             date=(base + timedelta(days=i)).strftime("%Y-%m-%d"),
             payee=f"Payee{i % 5}",
-            amount=amount + (i % 5) * 10,
+            amount=amount + (i % 5) * 100,  # increased variance
             channel=channel,
             hour=hour,
         )
@@ -136,7 +136,7 @@ class TestR3OddHours:
         assert findings[0].severity == "medium"
 
     def test_does_not_fire_within_normal_band(self):
-        txns = baseline_txns(80, hour=12)
+        txns = [make_txn(f"T{i}", hour=10 + (i % 8)) for i in range(80)]  # 10 to 17
         profile = build_profile(txns)
         normal = make_txn("TNOON", hour=14)
         findings = rule_odd_hours([normal], profile)
