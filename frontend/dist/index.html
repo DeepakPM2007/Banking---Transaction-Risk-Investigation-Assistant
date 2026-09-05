@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaction Risk Investigation Assistant</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a1d2e;
+      border-bottom: 1px solid #2d3748;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header .logo { font-size: 22px; }
+    header h1 { font-size: 18px; font-weight: 600; color: #f7fafc; }
+    header .track { font-size: 12px; color: #718096; background: #2d3748; padding: 2px 8px; border-radius: 4px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    select {
+      background: #1a1d2e;
+      color: #e2e8f0;
+      border: 1px solid #4a5568;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 15px;
+      cursor: pointer;
+      min-width: 220px;
+    }
+    button#runBtn {
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button#runBtn:hover { background: #4338ca; }
+    button#runBtn:disabled { background: #374151; cursor: not-allowed; }
+
+    /* Spinner */
+    .spinner {
+      display: none;
+      width: 20px; height: 20px;
+      border: 3px solid #4a5568;
+      border-top-color: #4f46e5;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Headline banner */
+    #banner {
+      display: none;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      border-left: 5px solid;
+    }
+    #banner.clean     { background: #0d2416; border-color: #22c55e; }
+    #banner.review    { background: #2a1f00; border-color: #f59e0b; }
+    #banner.investigate { background: #2a0d0d; border-color: #ef4444; }
+    #banner .status-badge {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    #banner.clean .status-badge     { color: #22c55e; }
+    #banner.review .status-badge    { color: #f59e0b; }
+    #banner.investigate .status-badge { color: #ef4444; }
+    #banner .headline-text { font-size: 17px; font-weight: 500; }
+    #banner .source-tag { font-size: 12px; color: #718096; margin-top: 6px; }
+
+    /* Profile pill row */
+    #profileRow {
+      display: none;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .pill {
+      background: #1a1d2e;
+      border: 1px solid #2d3748;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+    .pill span { color: #718096; }
+
+    /* Findings */
+    #findingsSection { display: none; margin-bottom: 32px; }
+    #findingsSection h2 { font-size: 16px; font-weight: 600; margin-bottom: 14px; color: #a0aec0; }
+
+    .finding-card {
+      background: #1a1d2e;
+      border: 1px solid #2d3748;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .finding-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .rule-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: #2d3748;
+      color: #90cdf4;
+    }
+    .severity-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .severity-badge.high   { background: #2a0d0d; color: #f87171; }
+    .severity-badge.medium { background: #2a1f00; color: #fbbf24; }
+    .finding-name { font-size: 15px; font-weight: 600; }
+    .narrative { font-size: 14px; color: #cbd5e0; line-height: 1.6; margin-bottom: 12px; }
+    .check-first {
+      font-size: 13px;
+      background: #0d1a2e;
+      border-left: 3px solid #4f46e5;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      color: #90cdf4;
+      margin-bottom: 14px;
+    }
+    .check-first strong { display: block; font-size: 11px; color: #718096; margin-bottom: 3px; text-transform: uppercase; }
+
+    /* Cited transactions table */
+    .cited-title { font-size: 13px; font-weight: 600; color: #718096; margin-bottom: 8px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      text-align: left;
+      padding: 8px 10px;
+      background: #0f1117;
+      color: #718096;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    td { padding: 8px 10px; border-top: 1px solid #1a1d2e; }
+    tr:hover td { background: #131620; }
+    .txn-id { font-family: monospace; color: #90cdf4; }
+    .amount { font-weight: 600; color: #f7fafc; }
+    .channel-badge {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #2d3748;
+      color: #a0aec0;
+    }
+    .hour-odd { color: #f87171; font-weight: 600; }
+
+    /* Full history section */
+    #historySection { display: none; }
+    #historySection h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #a0aec0;
+      cursor: pointer;
+      user-select: none;
+    }
+    #historySection h2:hover { color: #e2e8f0; }
+    #historyTableWrap { display: none; }
+    #historyTable tr.highlighted td { background: #1a0a0a; }
+
+    /* Error */
+    #errorBox {
+      display: none;
+      background: #2a0d0d;
+      border: 1px solid #f87171;
+      border-radius: 8px;
+      padding: 16px;
+      color: #f87171;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="logo">🏦</span>
+    <h1>Transaction Risk Investigation Assistant</h1>
+    <span class="track">TRACK_ID: PS06</span>
+  </header>
+
+  <div class="container">
+    <div class="controls">
+      <select id="customerSelect"><option value="">-- Select a customer --</option></select>
+      <button id="runBtn" disabled>Run Investigation</button>
+      <div class="spinner" id="spinner"></div>
+    </div>
+
+    <div id="errorBox"></div>
+    <div id="banner">
+      <div class="status-badge" id="bannerStatus"></div>
+      <div class="headline-text" id="bannerHeadline"></div>
+      <div class="source-tag" id="bannerSource"></div>
+    </div>
+
+    <div id="profileRow" style="display:none; gap:12px; flex-wrap:wrap; margin-bottom:24px;"></div>
+
+    <div id="findingsSection">
+      <h2>Risk Findings</h2>
+      <div id="findingsContainer"></div>
+    </div>
+
+    <div id="historySection">
+      <h2 id="historyToggle">▶ Full Transaction History (click to expand)</h2>
+      <div id="historyTableWrap">
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>TXN ID</th><th>Date</th><th>Payee</th><th>Description</th>
+              <th>Amount (₹)</th><th>Channel</th><th>Hour</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = '';
+    let allTransactions = [];
+    let citedIds = new Set();
+
+    // ── Load customers ────────────────────────────────────────────────────────
+    async function loadCustomers() {
+      try {
+        const res = await fetch(`${API}/api/customers`);
+        const data = await res.json();
+        const sel = document.getElementById('customerSelect');
+        data.customers.forEach(id => {
+          const opt = document.createElement('option');
+          opt.value = id;
+          opt.textContent = id.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+          sel.appendChild(opt);
+        });
+        sel.addEventListener('change', () => {
+          document.getElementById('runBtn').disabled = !sel.value;
+        });
+      } catch (e) {
+        showError('Failed to load customers. Is the server running?');
+      }
+    }
+
+    // ── Run investigation ─────────────────────────────────────────────────────
+    document.getElementById('runBtn').addEventListener('click', async () => {
+      const customerId = document.getElementById('customerSelect').value;
+      if (!customerId) return;
+      clearUI();
+      setLoading(true);
+      try {
+        const [investRes, txnRes] = await Promise.all([
+          fetch(`${API}/api/customers/${customerId}/investigate`),
+          fetch(`${API}/api/customers/${customerId}/transactions`),
+        ]);
+
+        if (!investRes.ok) throw new Error(`Investigation failed: ${investRes.status}`);
+        if (!txnRes.ok) throw new Error(`Transactions failed: ${txnRes.status}`);
+
+        const investData = await investRes.json();
+        const txnData = await txnRes.json();
+        allTransactions = txnData.transactions || [];
+
+        renderReport(investData);
+        renderHistory();
+      } catch (e) {
+        showError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    // ── Render report ─────────────────────────────────────────────────────────
+    function renderReport(data) {
+      const report = data.report;
+      const rawFindings = data.raw_findings || [];
+      const profile = data.profile || {};
+
+      // Banner
+      const banner = document.getElementById('banner');
+      const statusMap = { clean: 'clean', review_recommended: 'review', investigate: 'investigate' };
+      const cls = statusMap[report.status] || 'review';
+      const labelMap = { clean: '✅ Clean', review_recommended: '⚠️ Review Recommended', investigate: '🚨 Investigate' };
+      banner.className = cls;
+      banner.style.display = 'block';
+      document.getElementById('bannerStatus').textContent = labelMap[report.status] || report.status;
+      document.getElementById('bannerHeadline').textContent = report.headline;
+      document.getElementById('bannerSource').textContent =
+        `Report source: ${report.source === 'fallback' ? 'Deterministic fallback (Gemini unavailable)' : 'Gemini synthesis'}`;
+
+      // Profile pills
+      const profileRow = document.getElementById('profileRow');
+      profileRow.style.display = 'flex';
+      profileRow.innerHTML = `
+        <div class="pill"><span>Avg txn:</span> ₹${profile.mean_amount?.toFixed(0)}</div>
+        <div class="pill"><span>Stddev:</span> ₹${profile.stddev_amount?.toFixed(0)}</div>
+        <div class="pill"><span>Max (historical):</span> ₹${profile.max_amount?.toFixed(0)}</div>
+        <div class="pill"><span>Active hours:</span> ${profile.active_hour_p10}:00–${profile.active_hour_p90}:59</div>
+        <div class="pill"><span>Dominant channel:</span> ${profile.dominant_channel}</div>
+      `;
+
+      // Findings
+      citedIds = new Set();
+      report.findings.forEach(f => (f.txn_ids || []).forEach(id => citedIds.add(id)));
+
+      const fc = document.getElementById('findingsContainer');
+      if (report.findings.length === 0) {
+        fc.innerHTML = '<p style="color:#718096;font-size:14px;">No findings — all transactions within normal parameters.</p>';
+      } else {
+        report.findings.forEach((f, i) => {
+          // Get severity from raw finding
+          const raw = rawFindings.find(r => r.rule_id === f.rule_id) || {};
+          const severity = raw.severity || 'medium';
+          const cited = (f.txn_ids || []).map(tid =>
+            allTransactions.find(t => t.txn_id === tid)
+          ).filter(Boolean);
+
+          const card = document.createElement('div');
+          card.className = 'finding-card';
+          card.innerHTML = `
+            <div class="finding-header">
+              <span class="rule-badge">${f.rule_id}</span>
+              <span class="severity-badge ${severity}">${severity}</span>
+              <span class="finding-name">${ruleNameMap[f.rule_id] || f.rule_id}</span>
+            </div>
+            <div class="narrative">${f.narrative}</div>
+            <div class="check-first"><strong>What to check first</strong>${f.check_first}</div>
+            <div class="cited-title">Cited Transactions (${cited.length})</div>
+            ${buildTxnTable(cited, true)}
+          `;
+          fc.appendChild(card);
+        });
+      }
+
+      document.getElementById('findingsSection').style.display = 'block';
+    }
+
+    const ruleNameMap = {
+      R1: 'Unusually Large Transfer',
+      R2: 'Burst to Newly Added Payee',
+      R3: 'Odd-Hours Activity',
+      R4: 'Pattern Break',
+    };
+
+    function buildTxnTable(txns, isCited = false) {
+      if (!txns.length) return '<p style="color:#718096;font-size:13px;padding:8px 0;">No transactions found.</p>';
+      const rows = txns.map(t => {
+        const isOddHour = t.hour < 6 || t.hour > 22;
+        return `<tr>
+          <td><span class="txn-id">${t.txn_id}</span></td>
+          <td>${t.date}</td>
+          <td>${t.payee}</td>
+          <td>${t.description}</td>
+          <td class="amount">₹${Number(t.amount).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+          <td><span class="channel-badge">${t.channel}</span></td>
+          <td class="${isOddHour ? 'hour-odd' : ''}">${t.hour}:00</td>
+        </tr>`;
+      }).join('');
+      return `<table><thead><tr>
+        <th>TXN ID</th><th>Date</th><th>Payee</th><th>Description</th>
+        <th>Amount (₹)</th><th>Channel</th><th>Hour</th>
+      </tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    // ── Full history ──────────────────────────────────────────────────────────
+    function renderHistory() {
+      const body = document.getElementById('historyBody');
+      body.innerHTML = '';
+      allTransactions.forEach(t => {
+        const isOddHour = t.hour < 6 || t.hour > 22;
+        const isCited = citedIds.has(t.txn_id);
+        const tr = document.createElement('tr');
+        if (isCited) tr.classList.add('highlighted');
+        tr.innerHTML = `
+          <td><span class="txn-id">${t.txn_id}</span></td>
+          <td>${t.date}</td>
+          <td>${t.payee}</td>
+          <td>${t.description}</td>
+          <td class="amount">₹${Number(t.amount).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+          <td><span class="channel-badge">${t.channel}</span></td>
+          <td class="${isOddHour ? 'hour-odd' : ''}">${t.hour}:00</td>
+        `;
+        body.appendChild(tr);
+      });
+      document.getElementById('historySection').style.display = 'block';
+    }
+
+    document.getElementById('historyToggle').addEventListener('click', () => {
+      const wrap = document.getElementById('historyTableWrap');
+      const toggle = document.getElementById('historyToggle');
+      const open = wrap.style.display === 'block';
+      wrap.style.display = open ? 'none' : 'block';
+      toggle.textContent = (open ? '▶' : '▼') + ' Full Transaction History (click to ' + (open ? 'expand' : 'collapse') + ')';
+    });
+
+    // ── Utilities ─────────────────────────────────────────────────────────────
+    function setLoading(on) {
+      document.getElementById('spinner').style.display = on ? 'block' : 'none';
+      document.getElementById('runBtn').disabled = on;
+    }
+
+    function clearUI() {
+      document.getElementById('banner').style.display = 'none';
+      document.getElementById('profileRow').style.display = 'none';
+      document.getElementById('findingsSection').style.display = 'none';
+      document.getElementById('historySection').style.display = 'none';
+      document.getElementById('historyTableWrap').style.display = 'none';
+      document.getElementById('findingsContainer').innerHTML = '';
+      document.getElementById('historyBody').innerHTML = '';
+      document.getElementById('errorBox').style.display = 'none';
+      allTransactions = [];
+      citedIds = new Set();
+    }
+
+    function showError(msg) {
+      const box = document.getElementById('errorBox');
+      box.textContent = '⚠️ ' + msg;
+      box.style.display = 'block';
+    }
+
+    // Init
+    loadCustomers();
+  </script>
+</body>
+</html>
