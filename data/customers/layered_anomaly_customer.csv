@@ -1,0 +1,159 @@
+txn_id,date,timestamp,description,payee,amount,channel
+T0001,2026-01-01,2026-01-01T22:50:00,Cash deposit,Cash Deposit,3997.93,cash
+T0002,2026-01-02,2026-01-02T18:14:00,UPI payment,Arun Verma,1273.64,upi
+T0003,2026-01-03,2026-01-03T22:34:00,UPI payment,Deepa Pillai,313.33,upi
+T0004,2026-01-06,2026-01-06T14:01:00,UPI payment,Rahul Sharma,1983.74,upi
+T0005,2026-01-09,2026-01-09T14:06:00,Debit card swipe,Reliance Fresh,2538.36,card
+T0006,2026-01-10,2026-01-10T12:41:00,UPI P2P,Deepa Pillai,503.82,upi
+T0007,2026-01-11,2026-01-11T16:31:00,Sent via GPay,Sunita Joshi,4282.3,upi
+T0008,2026-01-11,2026-01-11T12:09:00,POS purchase,Lifestyle,645.41,card
+T0009,2026-01-14,2026-01-14T13:38:00,Debit card swipe,Nature's Basket,2090.25,card
+T0010,2026-01-15,2026-01-15T13:56:00,Contactless payment,Reliance Fresh,4308.13,card
+T0011,2026-01-17,2026-01-17T13:42:00,Sent via PhonePe,Ramesh Patel,3729.18,upi
+T0012,2026-01-19,2026-01-19T09:06:00,POS purchase,Lifestyle,615.53,card
+T0013,2026-01-19,2026-01-19T14:35:00,POS purchase,Nature's Basket,4115.32,card
+T0014,2026-01-20,2026-01-20T18:46:00,Card payment,Decathlon,1961.91,card
+T0015,2026-01-23,2026-01-23T11:06:00,Sent via GPay,Arun Verma,1299.87,upi
+T0016,2026-01-24,2026-01-24T17:54:00,Contactless payment,Reliance Fresh,3884.25,card
+T0017,2026-01-25,2026-01-25T15:42:00,POS purchase,Croma,3183.79,card
+T0018,2026-01-26,2026-01-26T19:22:00,Sent via PhonePe,Suresh Iyer,1584.37,upi
+T0019,2026-01-26,2026-01-26T09:47:00,Sent via GPay,Suresh Iyer,2961.71,upi
+T0020,2026-01-27,2026-01-27T13:10:00,Sent via GPay,Arun Verma,1311.12,upi
+T0021,2026-01-28,2026-01-28T10:48:00,POS purchase,Croma,3102.25,card
+T0022,2026-01-29,2026-01-29T13:28:00,Card payment,More Supermarket,2382.63,card
+T0023,2026-01-30,2026-01-30T10:43:00,Sent via GPay,Arun Verma,834.94,upi
+T0024,2026-01-31,2026-01-31T21:03:00,Sent via GPay,Vikram Nair,513.46,upi
+T0025,2026-02-02,2026-02-02T12:00:00,Sent via PhonePe,Suresh Iyer,3891.56,upi
+T0026,2026-02-03,2026-02-03T13:53:00,UPI payment,Suresh Iyer,2086.97,upi
+T0027,2026-02-04,2026-02-04T13:29:00,UPI transfer,Ramesh Patel,4350.29,upi
+T0028,2026-02-05,2026-02-05T16:26:00,EMI debit,Axis Securities,2317.64,neft
+T0029,2026-02-05,2026-02-05T10:39:00,Sent via PhonePe,Ramesh Patel,398.03,upi
+T0030,2026-02-06,2026-02-06T11:37:00,POS purchase,Nature's Basket,714.21,card
+T0031,2026-02-07,2026-02-07T12:10:00,UPI payment,Vikram Nair,3805.28,upi
+T0032,2026-02-09,2026-02-09T12:52:00,Debit card swipe,Spencer's Retail,4557.84,card
+T0033,2026-02-10,2026-02-10T10:09:00,UPI payment,Priya Mehta,988.29,upi
+T0034,2026-02-11,2026-02-11T13:36:00,Card payment,DMart,4771.07,card
+T0035,2026-02-12,2026-02-12T12:40:00,UPI P2P,Deepa Pillai,3322.06,upi
+T0036,2026-02-13,2026-02-13T17:37:00,Sent via PhonePe,Sunita Joshi,2378.38,upi
+T0037,2026-02-15,2026-02-15T18:04:00,Sent via PhonePe,Sunita Joshi,476.75,upi
+T0038,2026-02-16,2026-02-16T13:35:00,Branch cash deposit,Cash Deposit,3190.54,cash
+T0039,2026-02-17,2026-02-17T12:30:00,Contactless payment,Big Bazaar,2413.75,card
+T0040,2026-02-17,2026-02-17T21:05:00,Debit card swipe,Big Bazaar,2417.46,card
+T0041,2026-02-18,2026-02-18T14:39:00,Sent via GPay,Anita Reddy,3625.82,upi
+T0042,2026-02-20,2026-02-20T09:40:00,UPI P2P,Ramesh Patel,3939.98,upi
+T0043,2026-02-21,2026-02-21T11:46:00,Sent via GPay,Priya Mehta,2922.43,upi
+T0044,2026-02-22,2026-02-22T19:19:00,ATM cash withdrawal,ATM Withdrawal,1866.8,atm
+T0045,2026-02-22,2026-02-22T12:24:00,ATM cash withdrawal,ATM Withdrawal,906.07,atm
+T0046,2026-02-23,2026-02-23T09:42:00,UPI P2P,Suresh Iyer,3449.55,upi
+T0047,2026-02-24,2026-02-24T12:49:00,UPI payment,Kavitha Krishnan,1751.67,upi
+T0048,2026-02-25,2026-02-25T18:06:00,Sent via PhonePe,Suresh Iyer,1028.24,upi
+T0049,2026-02-26,2026-02-26T19:39:00,Debit card swipe,Shoppers Stop,477.41,card
+T0050,2026-02-28,2026-02-28T16:02:00,UPI payment,Deepa Pillai,4102.51,upi
+T0051,2026-03-01,2026-03-01T17:50:00,Debit card swipe,Spencer's Retail,4857.07,card
+T0052,2026-03-02,2026-03-02T19:12:00,Card payment,More Supermarket,4838.3,card
+T0053,2026-03-03,2026-03-03T17:32:00,ATM withdrawal,ATM Withdrawal,2469.9,atm
+T0054,2026-03-04,2026-03-04T18:03:00,ATM cash withdrawal,ATM Withdrawal,4065.92,atm
+T0055,2026-03-05,2026-03-05T11:48:00,NEFT transfer,Axis Securities,4691.18,neft
+T0056,2026-03-07,2026-03-07T18:56:00,Contactless payment,Decathlon,731.05,card
+T0057,2026-03-08,2026-03-08T11:05:00,Sent via PhonePe,Rahul Sharma,2163.33,upi
+T0058,2026-03-09,2026-03-09T17:08:00,Sent via PhonePe,Priya Mehta,4244.13,upi
+T0059,2026-03-11,2026-03-11T13:00:00,Sent via GPay,Suresh Iyer,3866.55,upi
+T0060,2026-03-11,2026-03-11T14:46:00,ATM cash withdrawal,ATM Withdrawal,1502.84,atm
+T0061,2026-03-12,2026-03-12T09:26:00,UPI transfer,Vikram Nair,1416.91,upi
+T0062,2026-03-13,2026-03-13T14:01:00,Card payment,Reliance Fresh,821.03,card
+T0063,2026-03-14,2026-03-14T15:15:00,POS purchase,DMart,1668.98,card
+T0064,2026-03-15,2026-03-15T09:33:00,Sent via PhonePe,Priya Mehta,2760.38,upi
+T0065,2026-03-16,2026-03-16T18:02:00,Card payment,Shoppers Stop,2904.51,card
+T0066,2026-03-17,2026-03-17T17:22:00,Branch cash deposit,Cash Deposit,3812.39,cash
+T0067,2026-03-19,2026-03-19T10:22:00,Sent via PhonePe,Deepa Pillai,3755.38,upi
+T0068,2026-03-20,2026-03-20T21:30:00,EMI debit,LIC Premium,4202.8,neft
+T0069,2026-03-21,2026-03-21T08:12:00,EMI debit,HDFC Housing Loan,3665.41,neft
+T0070,2026-03-25,2026-03-25T17:12:00,POS purchase,Shoppers Stop,2524.98,card
+T0071,2026-03-25,2026-03-25T11:51:00,Sent via PhonePe,Rahul Sharma,4369.25,upi
+T0072,2026-03-26,2026-03-26T12:11:00,EMI debit,SBI Mutual Fund,4504.8,neft
+T0073,2026-03-27,2026-03-27T16:05:00,UPI transfer,Arun Verma,1553.59,upi
+T0074,2026-03-28,2026-03-28T10:20:00,Branch cash deposit,Cash Deposit,2863.73,cash
+T0075,2026-03-29,2026-03-29T16:22:00,UPI payment,Deepa Pillai,3673.02,upi
+T0076,2026-03-30,2026-03-30T11:50:00,Card payment,Nature's Basket,3189.8,card
+T0077,2026-03-31,2026-03-31T20:09:00,UPI payment,Ramesh Patel,2007.56,upi
+T0078,2026-03-31,2026-03-31T11:41:00,NEFT transfer,SBI Mutual Fund,463.56,neft
+T0079,2026-04-01,2026-04-01T16:23:00,UPI payment,Deepa Pillai,452.21,upi
+T0080,2026-04-02,2026-04-02T12:41:00,Debit card swipe,Croma,947.17,card
+T0081,2026-04-04,2026-04-04T19:07:00,Sent via GPay,Suresh Iyer,2645.51,upi
+T0082,2026-04-04,2026-04-04T22:18:00,UPI payment,Vikram Nair,3608.98,upi
+T0083,2026-04-05,2026-04-05T13:57:00,Cash deposit,Cash Deposit,876.4,cash
+T0084,2026-04-06,2026-04-06T14:18:00,Cash deposit,Cash Deposit,3438.85,cash
+T0085,2026-04-07,2026-04-07T10:12:00,Online bank transfer,LIC Premium,4030.37,neft
+T0086,2026-04-07,2026-04-07T12:36:00,POS purchase,Spencer's Retail,4014.75,card
+T0087,2026-04-08,2026-04-08T09:25:00,NEFT transfer,Axis Securities,909.92,neft
+T0088,2026-04-09,2026-04-09T18:04:00,Card payment,Shoppers Stop,2230.74,card
+T0089,2026-04-09,2026-04-09T13:33:00,Sent via GPay,Kavitha Krishnan,3318.99,upi
+T0090,2026-04-10,2026-04-10T17:08:00,Online bank transfer,Axis Securities,3307.03,neft
+T0091,2026-04-11,2026-04-11T12:10:00,ATM cash withdrawal,ATM Withdrawal,4207.54,atm
+T0092,2026-04-12,2026-04-12T18:16:00,Debit card swipe,Nature's Basket,4753.17,card
+T0093,2026-04-14,2026-04-14T13:10:00,UPI transfer,Vikram Nair,3187.81,upi
+T0094,2026-04-14,2026-04-14T18:36:00,Debit card swipe,Croma,1024.71,card
+T0095,2026-04-16,2026-04-16T17:26:00,UPI payment,Deepa Pillai,1543.88,upi
+T0096,2026-04-16,2026-04-16T15:19:00,Debit card swipe,Big Bazaar,2640.78,card
+T0097,2026-04-17,2026-04-17T16:10:00,NEFT transfer,SBI Mutual Fund,1697.94,neft
+T0098,2026-04-18,2026-04-18T12:45:00,UPI payment,Anita Reddy,1898.91,upi
+T0099,2026-04-19,2026-04-19T17:32:00,Cash deposit,Cash Deposit,4884.26,cash
+T0100,2026-04-20,2026-04-20T11:06:00,Sent via GPay,Sunita Joshi,875.85,upi
+T0101,2026-04-22,2026-04-22T18:59:00,Online bank transfer,SBI Mutual Fund,1466.87,neft
+T0102,2026-04-22,2026-04-22T13:32:00,Contactless payment,Nature's Basket,1192.22,card
+T0103,2026-04-23,2026-04-23T13:15:00,EMI debit,SBI Mutual Fund,408.93,neft
+T0104,2026-04-25,2026-04-25T11:00:00,Sent via GPay,Sunita Joshi,3108.34,upi
+T0105,2026-04-26,2026-04-26T12:25:00,Sent via GPay,Vikram Nair,3719.29,upi
+T0106,2026-04-26,2026-04-26T11:24:00,UPI P2P,Arun Verma,1214.88,upi
+T0107,2026-04-27,2026-04-27T10:06:00,POS purchase,More Supermarket,4178.96,card
+T0108,2026-04-28,2026-04-28T17:12:00,Debit card swipe,Nature's Basket,2921.81,card
+T0109,2026-04-29,2026-04-29T16:51:00,UPI payment,Rahul Sharma,512.93,upi
+T0110,2026-04-30,2026-04-30T12:39:00,UPI payment,Deepa Pillai,4497.72,upi
+T0111,2026-05-01,2026-05-01T14:32:00,Sent via PhonePe,Deepa Pillai,3774.8,upi
+T0112,2026-05-02,2026-05-02T12:43:00,POS purchase,Croma,1709.02,card
+T0113,2026-05-02,2026-05-02T14:16:00,UPI transfer,Ramesh Patel,3043.4,upi
+T0114,2026-05-03,2026-05-03T14:10:00,POS purchase,Croma,3014.88,card
+T0115,2026-05-03,2026-05-03T10:43:00,Card payment,Croma,3940.65,card
+T0116,2026-05-05,2026-05-05T13:26:00,Debit card swipe,Spencer's Retail,389.01,card
+T0117,2026-05-06,2026-05-06T16:33:00,UPI transfer,Deepa Pillai,4626.45,upi
+T0118,2026-05-08,2026-05-08T13:34:00,Contactless payment,Shoppers Stop,2071.08,card
+T0119,2026-05-09,2026-05-09T20:17:00,UPI payment,Vikram Nair,3167.36,upi
+T0120,2026-05-10,2026-05-10T16:31:00,UPI payment,Vikram Nair,3924.52,upi
+T0121,2026-05-11,2026-05-11T16:24:00,UPI P2P,Vikram Nair,1652.61,upi
+T0122,2026-05-12,2026-05-12T11:18:00,UPI payment,Kavitha Krishnan,4786.66,upi
+T0123,2026-05-12,2026-05-12T15:47:00,ATM withdrawal,ATM Withdrawal,1927.91,atm
+T0124,2026-05-13,2026-05-13T16:08:00,UPI P2P,Arun Verma,1574.32,upi
+T0125,2026-05-15,2026-05-15T11:14:00,UPI P2P,Rahul Sharma,3448.22,upi
+T0126,2026-05-17,2026-05-17T08:35:00,Contactless payment,Reliance Fresh,3501.6,card
+T0127,2026-05-18,2026-05-18T17:18:00,UPI payment,Sunita Joshi,2544.01,upi
+T0128,2026-05-18,2026-05-18T15:14:00,UPI transfer,Rahul Sharma,4567.3,upi
+T0129,2026-05-19,2026-05-19T13:53:00,Contactless payment,Big Bazaar,4592.18,card
+T0130,2026-05-21,2026-05-21T20:55:00,Cash deposit,Cash Deposit,4003.41,cash
+T0131,2026-05-21,2026-05-21T20:21:00,ATM cash withdrawal,ATM Withdrawal,343.56,atm
+T0132,2026-05-23,2026-05-23T18:29:00,Contactless payment,Lifestyle,4479.52,card
+T0133,2026-05-23,2026-05-23T15:45:00,Sent via GPay,Priya Mehta,1854.22,upi
+T0134,2026-05-25,2026-05-25T10:54:00,Contactless payment,Croma,3469.69,card
+T0135,2026-05-26,2026-05-26T12:06:00,UPI transfer,Ramesh Patel,2721.82,upi
+T0136,2026-05-29,2026-05-29T17:21:00,Sent via GPay,Vikram Nair,2102.8,upi
+T0137,2026-05-30,2026-05-30T16:03:00,Debit card swipe,Big Bazaar,1529.3,card
+T0138,2026-05-31,2026-05-31T19:56:00,UPI P2P,Suresh Iyer,1800.04,upi
+T0139,2026-06-01,2026-06-01T12:14:00,Sent via PhonePe,Priya Mehta,2663.23,upi
+T0155,2026-06-02,2026-06-02T03:36:00,UPI transfer - Ravi Malhotra,Ravi Malhotra,8500.0,upi
+T0156,2026-06-03,2026-06-03T14:20:00,UPI P2P - Ravi Malhotra,Ravi Malhotra,9200.0,upi
+T0140,2026-06-05,2026-06-05T17:51:00,Card payment,Decathlon,2897.18,card
+T0157,2026-06-05,2026-06-05T02:36:00,UPI transfer - urgent payment Ravi Malhotra,Ravi Malhotra,55000.0,upi
+T0141,2026-06-06,2026-06-06T18:05:00,UPI P2P,Anita Reddy,2817.27,upi
+T0142,2026-06-07,2026-06-07T09:35:00,POS purchase,Nature's Basket,588.98,card
+T0143,2026-06-08,2026-06-08T18:28:00,Sent via PhonePe,Arun Verma,854.45,upi
+T0158,2026-06-08,2026-06-08T11:38:00,NEFT outward - Offshore Trade Solutions,Offshore Trade Solutions,28000.0,neft
+T0144,2026-06-11,2026-06-11T13:32:00,UPI transfer,Arun Verma,1948.29,upi
+T0145,2026-06-12,2026-06-12T16:25:00,Debit card swipe,Shoppers Stop,2010.8,card
+T0146,2026-06-17,2026-06-17T21:30:00,POS purchase,Shoppers Stop,3978.26,card
+T0147,2026-06-19,2026-06-19T13:58:00,Card payment,Decathlon,1685.51,card
+T0148,2026-06-20,2026-06-20T10:34:00,Sent via PhonePe,Arun Verma,792.06,upi
+T0149,2026-06-23,2026-06-23T15:34:00,EMI debit,HDFC Housing Loan,3920.42,neft
+T0150,2026-06-24,2026-06-24T10:12:00,Sent via PhonePe,Anita Reddy,1215.79,upi
+T0151,2026-06-25,2026-06-25T15:59:00,Card payment,Reliance Fresh,419.2,card
+T0152,2026-06-26,2026-06-26T08:38:00,UPI P2P,Anita Reddy,548.98,upi
+T0153,2026-06-27,2026-06-27T13:34:00,EMI debit,LIC Premium,3040.0,neft
+T0154,2026-06-29,2026-06-29T18:46:00,UPI payment,Arun Verma,3975.89,upi

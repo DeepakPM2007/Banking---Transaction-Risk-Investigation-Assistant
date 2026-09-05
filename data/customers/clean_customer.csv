@@ -1,0 +1,159 @@
+txn_id,date,timestamp,description,payee,amount,channel
+T0001,2026-01-01,2026-01-01T16:43:00,UPI payment,Anita Reddy,1867.67,upi
+T0002,2026-01-02,2026-01-02T09:14:00,POS purchase,Big Bazaar,3665.81,card
+T0003,2026-01-03,2026-01-03T11:37:00,Sent via GPay,Arun Verma,1433.37,upi
+T0004,2026-01-05,2026-01-05T11:13:00,Debit card swipe,Decathlon,1210.06,card
+T0005,2026-01-05,2026-01-05T09:54:00,ATM withdrawal,ATM Withdrawal,2218.59,atm
+T0006,2026-01-06,2026-01-06T10:59:00,UPI P2P,Sunita Joshi,547.67,upi
+T0007,2026-01-07,2026-01-07T14:45:00,Debit card swipe,Croma,5027.61,card
+T0008,2026-01-09,2026-01-09T12:29:00,POS purchase,Spencer's Retail,5915.76,card
+T0009,2026-01-10,2026-01-10T16:43:00,Sent via PhonePe,Anita Reddy,2410.03,upi
+T0010,2026-01-11,2026-01-11T13:17:00,Contactless payment,Spencer's Retail,1275.49,card
+T0011,2026-01-12,2026-01-12T11:02:00,POS purchase,Nature's Basket,3474.61,card
+T0012,2026-01-12,2026-01-12T19:36:00,Online bank transfer,HDFC Housing Loan,2586.64,neft
+T0013,2026-01-13,2026-01-13T10:08:00,Sent via GPay,Ramesh Patel,4036.0,upi
+T0014,2026-01-13,2026-01-13T13:37:00,UPI P2P,Vikram Nair,3499.8,upi
+T0015,2026-01-14,2026-01-14T09:03:00,Sent via GPay,Arun Verma,5985.96,upi
+T0016,2026-01-15,2026-01-15T09:24:00,UPI P2P,Ramesh Patel,1211.9,upi
+T0017,2026-01-15,2026-01-15T16:07:00,POS purchase,More Supermarket,2967.88,card
+T0018,2026-01-16,2026-01-16T11:10:00,POS purchase,Nature's Basket,1820.9,card
+T0019,2026-01-17,2026-01-17T13:06:00,ATM cash withdrawal,ATM Withdrawal,5292.36,atm
+T0020,2026-01-18,2026-01-18T10:48:00,UPI payment,Deepa Pillai,3942.01,upi
+T0021,2026-01-18,2026-01-18T14:31:00,UPI transfer,Arun Verma,5734.95,upi
+T0022,2026-01-20,2026-01-20T09:56:00,Online bank transfer,Tata AIG Insurance,5040.49,neft
+T0023,2026-01-20,2026-01-20T21:34:00,POS purchase,Lifestyle,748.92,card
+T0024,2026-01-21,2026-01-21T11:55:00,UPI payment,Arun Verma,3009.11,upi
+T0025,2026-01-22,2026-01-22T12:42:00,ATM withdrawal,ATM Withdrawal,5594.81,atm
+T0026,2026-01-23,2026-01-23T11:21:00,UPI payment,Priya Mehta,3250.18,upi
+T0027,2026-01-25,2026-01-25T09:02:00,Contactless payment,Big Bazaar,340.99,card
+T0028,2026-01-26,2026-01-26T14:46:00,UPI payment,Sunita Joshi,1656.63,upi
+T0029,2026-01-26,2026-01-26T17:51:00,ATM cash withdrawal,ATM Withdrawal,3554.95,atm
+T0030,2026-01-27,2026-01-27T12:55:00,Sent via GPay,Kavitha Krishnan,4056.2,upi
+T0031,2026-01-28,2026-01-28T12:21:00,POS purchase,Reliance Fresh,5909.74,card
+T0032,2026-01-29,2026-01-29T10:11:00,Sent via GPay,Arun Verma,1392.06,upi
+T0033,2026-01-29,2026-01-29T17:54:00,Sent via GPay,Priya Mehta,1723.9,upi
+T0034,2026-01-30,2026-01-30T20:54:00,UPI transfer,Rahul Sharma,5995.91,upi
+T0035,2026-02-01,2026-02-01T12:24:00,UPI payment,Rahul Sharma,5228.51,upi
+T0036,2026-02-03,2026-02-03T10:18:00,Sent via GPay,Arun Verma,2711.14,upi
+T0037,2026-02-06,2026-02-06T13:58:00,UPI P2P,Rahul Sharma,2087.55,upi
+T0038,2026-02-07,2026-02-07T09:04:00,UPI payment,Priya Mehta,5776.44,upi
+T0039,2026-02-07,2026-02-07T14:02:00,Contactless payment,Reliance Fresh,1640.66,card
+T0040,2026-02-08,2026-02-08T20:13:00,Sent via PhonePe,Arun Verma,3626.93,upi
+T0041,2026-02-09,2026-02-09T13:59:00,Sent via PhonePe,Suresh Iyer,1814.0,upi
+T0042,2026-02-10,2026-02-10T09:13:00,UPI transfer,Deepa Pillai,2912.23,upi
+T0043,2026-02-11,2026-02-11T12:10:00,UPI payment,Priya Mehta,2289.35,upi
+T0044,2026-02-12,2026-02-12T15:35:00,POS purchase,Shoppers Stop,2024.35,card
+T0045,2026-02-14,2026-02-14T16:09:00,ATM cash withdrawal,ATM Withdrawal,1065.46,atm
+T0046,2026-02-16,2026-02-16T11:58:00,Card payment,More Supermarket,1460.5,card
+T0047,2026-02-17,2026-02-17T08:49:00,UPI transfer,Vikram Nair,2714.38,upi
+T0048,2026-02-17,2026-02-17T14:27:00,Sent via GPay,Suresh Iyer,5884.85,upi
+T0049,2026-02-18,2026-02-18T08:23:00,UPI P2P,Suresh Iyer,5686.79,upi
+T0050,2026-02-19,2026-02-19T19:50:00,Sent via PhonePe,Vikram Nair,1026.44,upi
+T0051,2026-02-20,2026-02-20T12:35:00,UPI transfer,Anita Reddy,2339.51,upi
+T0052,2026-02-20,2026-02-20T20:15:00,Online bank transfer,Axis Securities,2616.35,neft
+T0053,2026-02-21,2026-02-21T10:59:00,Cash deposit,Cash Deposit,4921.4,cash
+T0054,2026-02-21,2026-02-21T10:44:00,Sent via PhonePe,Anita Reddy,5605.65,upi
+T0055,2026-02-23,2026-02-23T12:50:00,NEFT outward,SBI Mutual Fund,1567.87,neft
+T0056,2026-02-23,2026-02-23T12:55:00,EMI debit,LIC Premium,1570.66,neft
+T0057,2026-02-25,2026-02-25T20:07:00,Sent via PhonePe,Arun Verma,3203.61,upi
+T0058,2026-02-26,2026-02-26T10:27:00,UPI transfer,Vikram Nair,3609.36,upi
+T0059,2026-02-26,2026-02-26T21:07:00,UPI P2P,Ramesh Patel,4782.64,upi
+T0060,2026-02-27,2026-02-27T14:51:00,POS purchase,Decathlon,1751.92,card
+T0061,2026-02-28,2026-02-28T13:42:00,Debit card swipe,Spencer's Retail,4529.12,card
+T0062,2026-03-01,2026-03-01T13:42:00,Debit card swipe,Reliance Fresh,4081.31,card
+T0063,2026-03-01,2026-03-01T10:26:00,UPI P2P,Vikram Nair,2593.68,upi
+T0064,2026-03-02,2026-03-02T14:25:00,UPI P2P,Suresh Iyer,4564.37,upi
+T0065,2026-03-03,2026-03-03T15:20:00,UPI P2P,Ramesh Patel,1935.41,upi
+T0066,2026-03-04,2026-03-04T15:18:00,UPI payment,Sunita Joshi,1518.1,upi
+T0067,2026-03-05,2026-03-05T11:12:00,Debit card swipe,Spencer's Retail,2210.57,card
+T0068,2026-03-08,2026-03-08T19:36:00,Card payment,Lifestyle,4680.39,card
+T0069,2026-03-08,2026-03-08T11:41:00,Sent via GPay,Sunita Joshi,4269.22,upi
+T0070,2026-03-09,2026-03-09T11:51:00,EMI debit,HDFC Housing Loan,5204.51,neft
+T0071,2026-03-10,2026-03-10T13:51:00,POS purchase,Spencer's Retail,586.24,card
+T0072,2026-03-10,2026-03-10T12:48:00,UPI P2P,Arun Verma,3327.45,upi
+T0073,2026-03-11,2026-03-11T18:35:00,Card payment,Shoppers Stop,4399.86,card
+T0074,2026-03-11,2026-03-11T11:15:00,Sent via GPay,Sunita Joshi,1207.2,upi
+T0075,2026-03-12,2026-03-12T11:04:00,UPI payment,Sunita Joshi,4732.75,upi
+T0076,2026-03-12,2026-03-12T19:05:00,Debit card swipe,Nature's Basket,1636.61,card
+T0077,2026-03-15,2026-03-15T14:26:00,Debit card swipe,Decathlon,666.1,card
+T0078,2026-03-17,2026-03-17T12:00:00,UPI P2P,Rahul Sharma,4687.84,upi
+T0079,2026-03-17,2026-03-17T14:47:00,ATM withdrawal,ATM Withdrawal,2002.09,atm
+T0080,2026-03-18,2026-03-18T13:01:00,Debit card swipe,Spencer's Retail,1557.07,card
+T0081,2026-03-19,2026-03-19T19:39:00,Card payment,DMart,4849.41,card
+T0082,2026-03-20,2026-03-20T15:08:00,ATM cash withdrawal,ATM Withdrawal,3673.79,atm
+T0083,2026-03-21,2026-03-21T13:21:00,UPI payment,Kavitha Krishnan,1782.89,upi
+T0084,2026-03-21,2026-03-21T18:30:00,Debit card swipe,Decathlon,2461.02,card
+T0085,2026-03-23,2026-03-23T17:15:00,Cash deposit,Cash Deposit,2294.77,cash
+T0086,2026-03-28,2026-03-28T10:38:00,Debit card swipe,More Supermarket,1542.4,card
+T0087,2026-03-29,2026-03-29T10:01:00,Debit card swipe,DMart,4733.41,card
+T0088,2026-03-29,2026-03-29T20:12:00,ATM withdrawal,ATM Withdrawal,3582.04,atm
+T0089,2026-03-31,2026-03-31T17:36:00,POS purchase,More Supermarket,880.84,card
+T0090,2026-04-01,2026-04-01T13:21:00,UPI transfer,Kavitha Krishnan,2741.75,upi
+T0091,2026-04-03,2026-04-03T16:27:00,Sent via GPay,Kavitha Krishnan,2771.08,upi
+T0092,2026-04-05,2026-04-05T13:52:00,Card payment,Shoppers Stop,3810.7,card
+T0093,2026-04-06,2026-04-06T19:15:00,Sent via PhonePe,Priya Mehta,5154.77,upi
+T0094,2026-04-07,2026-04-07T13:20:00,POS purchase,Nature's Basket,4108.67,card
+T0095,2026-04-10,2026-04-10T08:12:00,UPI P2P,Vikram Nair,5317.82,upi
+T0096,2026-04-12,2026-04-12T13:01:00,Sent via GPay,Sunita Joshi,4621.54,upi
+T0097,2026-04-15,2026-04-15T14:27:00,UPI P2P,Sunita Joshi,3614.87,upi
+T0098,2026-04-16,2026-04-16T12:14:00,Debit card swipe,Lifestyle,2305.32,card
+T0099,2026-04-16,2026-04-16T20:44:00,UPI P2P,Priya Mehta,1397.73,upi
+T0100,2026-04-19,2026-04-19T21:53:00,Debit card swipe,Shoppers Stop,5866.66,card
+T0101,2026-04-24,2026-04-24T16:08:00,Sent via PhonePe,Arun Verma,5853.48,upi
+T0102,2026-04-25,2026-04-25T13:28:00,Debit card swipe,Big Bazaar,884.75,card
+T0103,2026-04-26,2026-04-26T18:25:00,ATM cash withdrawal,ATM Withdrawal,1739.13,atm
+T0104,2026-04-27,2026-04-27T17:19:00,Contactless payment,DMart,4212.77,card
+T0105,2026-04-30,2026-04-30T17:24:00,UPI payment,Deepa Pillai,3697.92,upi
+T0106,2026-05-01,2026-05-01T14:03:00,Sent via PhonePe,Ramesh Patel,5202.95,upi
+T0107,2026-05-02,2026-05-02T11:05:00,Contactless payment,Spencer's Retail,5701.26,card
+T0108,2026-05-07,2026-05-07T16:44:00,Debit card swipe,Spencer's Retail,1960.18,card
+T0109,2026-05-08,2026-05-08T15:59:00,UPI P2P,Vikram Nair,1630.52,upi
+T0110,2026-05-08,2026-05-08T19:52:00,UPI payment,Anita Reddy,954.22,upi
+T0111,2026-05-11,2026-05-11T10:44:00,Card payment,More Supermarket,4998.17,card
+T0112,2026-05-12,2026-05-12T13:38:00,Sent via GPay,Arun Verma,1851.8,upi
+T0113,2026-05-14,2026-05-14T20:53:00,UPI payment,Priya Mehta,1727.1,upi
+T0114,2026-05-15,2026-05-15T17:11:00,POS purchase,More Supermarket,418.25,card
+T0115,2026-05-15,2026-05-15T22:27:00,UPI payment,Vikram Nair,4013.6,upi
+T0116,2026-05-16,2026-05-16T12:42:00,Sent via GPay,Kavitha Krishnan,820.08,upi
+T0117,2026-05-19,2026-05-19T08:05:00,UPI P2P,Ramesh Patel,4076.73,upi
+T0118,2026-05-20,2026-05-20T18:00:00,UPI P2P,Ramesh Patel,5830.05,upi
+T0119,2026-05-21,2026-05-21T15:31:00,Debit card swipe,Spencer's Retail,2655.51,card
+T0120,2026-05-22,2026-05-22T20:28:00,Contactless payment,Shoppers Stop,1460.28,card
+T0121,2026-05-23,2026-05-23T16:19:00,UPI payment,Deepa Pillai,464.56,upi
+T0122,2026-05-23,2026-05-23T22:58:00,Contactless payment,Reliance Fresh,3447.83,card
+T0123,2026-05-25,2026-05-25T13:30:00,Debit card swipe,More Supermarket,1177.64,card
+T0124,2026-05-25,2026-05-25T11:38:00,Branch cash deposit,Cash Deposit,1689.27,cash
+T0125,2026-05-26,2026-05-26T12:50:00,EMI debit,Tata AIG Insurance,5224.95,neft
+T0126,2026-05-27,2026-05-27T18:28:00,EMI debit,Tata AIG Insurance,1912.18,neft
+T0127,2026-05-28,2026-05-28T13:20:00,Sent via GPay,Arun Verma,3445.93,upi
+T0128,2026-05-29,2026-05-29T18:26:00,Cash deposit,Cash Deposit,1661.19,cash
+T0129,2026-05-29,2026-05-29T22:50:00,Sent via GPay,Ramesh Patel,4544.82,upi
+T0130,2026-05-30,2026-05-30T13:37:00,Cash deposit,Cash Deposit,3123.37,cash
+T0131,2026-05-30,2026-05-30T14:29:00,UPI transfer,Sunita Joshi,872.08,upi
+T0132,2026-06-02,2026-06-02T15:25:00,ATM withdrawal,ATM Withdrawal,726.52,atm
+T0133,2026-06-02,2026-06-02T20:40:00,Card payment,Shoppers Stop,5155.06,card
+T0134,2026-06-03,2026-06-03T11:43:00,POS purchase,Big Bazaar,5272.58,card
+T0135,2026-06-04,2026-06-04T17:45:00,Cash deposit,Cash Deposit,4556.57,cash
+T0136,2026-06-04,2026-06-04T09:50:00,NEFT transfer,Tata AIG Insurance,2828.97,neft
+T0137,2026-06-06,2026-06-06T16:11:00,UPI P2P,Ramesh Patel,1691.93,upi
+T0138,2026-06-09,2026-06-09T11:40:00,Contactless payment,Croma,1672.73,card
+T0139,2026-06-09,2026-06-09T19:43:00,Sent via GPay,Rahul Sharma,1755.36,upi
+T0140,2026-06-10,2026-06-10T15:27:00,Sent via PhonePe,Deepa Pillai,5687.84,upi
+T0141,2026-06-11,2026-06-11T10:24:00,Sent via GPay,Ramesh Patel,2022.09,upi
+T0142,2026-06-12,2026-06-12T21:42:00,POS purchase,More Supermarket,5958.34,card
+T0143,2026-06-13,2026-06-13T16:53:00,UPI P2P,Rahul Sharma,5230.88,upi
+T0144,2026-06-14,2026-06-14T11:12:00,Sent via PhonePe,Deepa Pillai,4853.5,upi
+T0145,2026-06-14,2026-06-14T19:41:00,POS purchase,DMart,4163.26,card
+T0146,2026-06-16,2026-06-16T19:20:00,UPI transfer,Suresh Iyer,2379.71,upi
+T0147,2026-06-17,2026-06-17T14:58:00,Sent via PhonePe,Arun Verma,1053.31,upi
+T0148,2026-06-20,2026-06-20T17:29:00,ATM withdrawal,ATM Withdrawal,5814.09,atm
+T0149,2026-06-20,2026-06-20T21:51:00,ATM withdrawal,ATM Withdrawal,1102.31,atm
+T0150,2026-06-21,2026-06-21T10:23:00,UPI P2P,Vikram Nair,2549.07,upi
+T0151,2026-06-22,2026-06-22T15:30:00,POS purchase,Nature's Basket,3631.99,card
+T0152,2026-06-24,2026-06-24T15:29:00,POS purchase,Spencer's Retail,5516.96,card
+T0153,2026-06-24,2026-06-24T10:02:00,ATM cash withdrawal,ATM Withdrawal,2022.48,atm
+T0154,2026-06-25,2026-06-25T12:23:00,UPI payment,Arun Verma,853.99,upi
+T0155,2026-06-26,2026-06-26T19:41:00,Contactless payment,Decathlon,5692.05,card
+T0156,2026-06-28,2026-06-28T11:28:00,Sent via PhonePe,Rahul Sharma,5723.67,upi
+T0157,2026-06-29,2026-06-29T09:17:00,NEFT outward,Tata AIG Insurance,866.32,neft
+T0158,2026-06-29,2026-06-29T15:41:00,UPI transfer,Sunita Joshi,996.31,upi
