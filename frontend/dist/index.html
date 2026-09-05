@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Transaction Risk Investigation Assistant</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <!-- Include vis.js for Network Graph -->
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   
   <style>
@@ -32,20 +31,14 @@
       color: var(--text-main);
       min-height: 100vh;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     /* ── Header ── */
     header {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      background: var(--bg-card); border-bottom: 1px solid var(--border);
+      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     .header-left { display: flex; align-items: center; gap: 12px; }
     .header-left i { color: var(--accent); font-size: 24px; }
@@ -55,72 +48,40 @@
     .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 
     /* ── Top Controls & Customer Panel ── */
-    .dashboard-top {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
+    .dashboard-top { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-bottom: 32px; }
 
     .selector-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
     .selector-card label { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;}
     select {
-      background: var(--bg-dark);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      font-size: 15px;
-      cursor: pointer;
-      outline: none;
-      transition: border-color 0.2s;
+      background: var(--bg-dark); color: var(--text-main); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px; font-size: 15px; cursor: pointer; outline: none; transition: border-color 0.2s;
     }
     select:focus { border-color: var(--accent); }
     
     .btn-group { display: flex; gap: 12px; }
-    
     button {
-      border: none; border-radius: 8px; padding: 12px 16px;
-      font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      border: none; border-radius: 8px; padding: 12px 16px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    
     button#runBtn { background: var(--accent); color: #fff; flex: 1; }
     button#runBtn:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-1px); }
     button#runBtn:disabled { background: #334155; color: #94a3b8; cursor: not-allowed; }
-
-    /* Download button */
     button#exportBtn { background: var(--bg-dark); color: var(--text-main); border: 1px solid var(--border); display: none; }
     button#exportBtn:hover { border-color: var(--accent); color: var(--accent); }
 
     .customer-details-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      opacity: 0.5;
-      transition: opacity 0.3s;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; display: flex; flex-direction: column; justify-content: center;
+      opacity: 0.5; transition: opacity 0.3s;
     }
     .customer-details-card.active { opacity: 1; }
     .customer-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
     .avatar { 
-      width: 56px; height: 56px; 
-      border-radius: 50%; 
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: bold;
+      width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;
     }
     .customer-name-wrapper h2 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
     .customer-name-wrapper p { font-size: 13px; color: var(--text-muted); }
@@ -131,24 +92,15 @@
     .metric-small .val { font-size: 14px; font-weight: 600; color: var(--text-main); }
 
     /* ── Spinner ── */
-    .spinner {
-      display: none; width: 16px; height: 16px;
-      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
-      border-radius: 50%; animation: spin 0.7s linear infinite;
-    }
+    .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* ── Headline banner ── */
-    #banner {
-      display: none; border-radius: 12px; padding: 24px; margin-bottom: 24px;
-      border-left: 6px solid; animation: slideDown 0.4s ease-out;
-    }
+    #banner { display: none; border-radius: 12px; padding: 24px; margin-bottom: 24px; border-left: 6px solid; animation: slideDown 0.4s ease-out; }
     @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-    
     #banner.clean     { background: rgba(16, 185, 129, 0.1); border-color: var(--success); }
     #banner.review    { background: rgba(245, 158, 11, 0.1); border-color: var(--warning); }
     #banner.investigate { background: var(--danger-bg); border-color: var(--danger); }
-    
     .banner-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;}
     #banner .status-badge { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
     #banner.clean .status-badge     { color: var(--success); }
@@ -158,14 +110,8 @@
     #banner .source-tag { font-size: 12px; color: var(--text-muted); background: var(--bg-dark); padding: 4px 8px; border-radius: 4px; border: 1px solid var(--border);}
 
     /* ── Profile metrics row ── */
-    #profileRow {
-      display: none; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px; margin-bottom: 32px;
-    }
-    .stat-card {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
-      display: flex; flex-direction: column; gap: 4px;
-    }
+    #profileRow { display: none; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
     .stat-card .label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
     .stat-card .val { font-size: 18px; font-weight: 600; }
     .stat-card i { color: var(--accent); opacity: 0.7; }
@@ -173,14 +119,10 @@
 
     /* ── Network Graph ── */
     #graphSection { display: none; margin-bottom: 32px; }
-    #networkGraph { 
-      height: 450px; border: 1px solid var(--border); border-radius: 12px; 
-      background: var(--bg-card); overflow: hidden; position: relative;
-    }
+    #networkGraph { height: 450px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); overflow: hidden; position: relative; }
     .graph-legend {
-      position: absolute; bottom: 16px; left: 16px; background: rgba(19, 24, 38, 0.9);
-      border: 1px solid var(--border); padding: 10px; border-radius: 8px;
-      font-size: 11px; z-index: 10; display: flex; flex-direction: column; gap: 6px;
+      position: absolute; bottom: 16px; left: 16px; background: rgba(19, 24, 38, 0.9); border: 1px solid var(--border);
+      padding: 10px; border-radius: 8px; font-size: 11px; z-index: 10; display: flex; flex-direction: column; gap: 6px;
     }
     .legend-item { display: flex; align-items: center; gap: 6px; color: var(--text-muted); }
     .dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -193,14 +135,10 @@
     .section-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
     .section-title i { color: var(--text-muted); }
 
-    .finding-card {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden;
-    }
+    .finding-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
     .finding-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
     .finding-card.severity-high::before { background: var(--danger); }
     .finding-card.severity-medium::before { background: var(--warning); }
-
     .finding-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
     .rule-badge { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px; background: var(--bg-dark); color: var(--accent); border: 1px solid var(--border);}
     .severity-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; }
@@ -208,12 +146,7 @@
     .severity-badge.medium { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
     .finding-name { font-size: 16px; font-weight: 600; }
     .narrative { font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 16px; }
-    
-    .check-first {
-      font-size: 14px; background: rgba(59, 130, 246, 0.1);
-      border-left: 3px solid var(--accent); padding: 12px 16px;
-      border-radius: 0 8px 8px 0; color: #e2e8f0; margin-bottom: 20px;
-    }
+    .check-first { font-size: 14px; background: rgba(59, 130, 246, 0.1); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; color: #e2e8f0; margin-bottom: 20px; }
     .check-first strong { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--accent); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;}
 
     /* ── Tables ── */
@@ -223,7 +156,11 @@
     th { text-align: left; padding: 12px 16px; background: var(--bg-dark); color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
     td { padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg-card); }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: var(--bg-card-hover); }
+    
+    /* Interactive Row Hover */
+    .clickable-row { cursor: pointer; transition: background 0.15s; }
+    .clickable-row:hover td { background: var(--bg-card-hover); }
+    
     .txn-id { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 12px;}
     .amount { font-weight: 600; color: #fff; }
     .channel-badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: var(--bg-dark); border: 1px solid var(--border); color: var(--text-muted); text-transform: uppercase;}
@@ -231,23 +168,54 @@
 
     /* ── Full history section ── */
     #historySection { display: none; margin-top: 20px;}
-    .history-toggle {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      cursor: pointer; transition: background 0.2s;
-    }
+    .history-toggle { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s; }
     .history-toggle:hover { background: var(--bg-card-hover); }
     .history-toggle h2 { font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 10px;}
     .history-toggle h2 i { color: var(--text-muted); }
     #historyTableWrap { display: none; margin-top: 16px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
     #historyTable tr.highlighted td { background: rgba(239, 68, 68, 0.05); }
 
-    /* ── Error ── */
-    #errorBox {
-      display: none; background: var(--danger-bg); border: 1px solid var(--danger);
-      border-radius: 12px; padding: 16px; color: #fca5a5; margin-bottom: 24px;
-      display: flex; align-items: center; gap: 12px;
+    /* ── Slide Popup Panel ── */
+    .slide-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px);
+      z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
     }
+    .slide-overlay.active { opacity: 1; pointer-events: auto; }
+
+    .slide-panel {
+      position: fixed; top: 0; right: 0; bottom: 0; width: 400px; max-width: 100%;
+      background: var(--bg-card); border-left: 1px solid var(--border);
+      box-shadow: -10px 0 25px rgba(0, 0, 0, 0.5); z-index: 1000;
+      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column;
+    }
+    .slide-panel.open { transform: translateX(0); }
+
+    .slide-header {
+      padding: 24px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .slide-header h2 { font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 8px;}
+    .slide-close {
+      background: none; border: none; color: var(--text-muted); font-size: 20px;
+      cursor: pointer; transition: color 0.2s; padding: 4px;
+    }
+    .slide-close:hover { color: #fff; }
+
+    .slide-body { padding: 24px; overflow-y: auto; flex: 1; }
+    .detail-group { margin-bottom: 20px; }
+    .detail-group label { display: block; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600;}
+    .detail-group .val { font-size: 15px; color: var(--text-main); background: var(--bg-dark); padding: 12px; border-radius: 8px; border: 1px solid var(--border); word-break: break-word;}
+    .detail-group .val.huge { font-size: 24px; font-weight: 700; color: var(--accent); }
+    .flag-banner {
+      background: var(--danger-bg); border: 1px solid var(--danger); color: #fca5a5;
+      padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      margin-bottom: 20px; display: none; align-items: center; gap: 8px;
+    }
+
+    /* ── Error ── */
+    #errorBox { display: none; background: var(--danger-bg); border: 1px solid var(--danger); border-radius: 12px; padding: 16px; color: #fca5a5; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
   </style>
 </head>
 <body>
@@ -258,6 +226,43 @@
     </div>
     <span class="track"><i class="fa-solid fa-code-branch"></i> PS06 Hackathon</span>
   </header>
+
+  <!-- Slide Popup Panel -->
+  <div class="slide-overlay" id="slideOverlay"></div>
+  <div class="slide-panel" id="slidePanel">
+    <div class="slide-header">
+      <h2><i class="fa-solid fa-file-invoice-dollar"></i> Transaction Details</h2>
+      <button class="slide-close" id="slideClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="slide-body">
+      <div class="flag-banner" id="pFlagged"><i class="fa-solid fa-triangle-exclamation"></i> Flagged as Suspicious</div>
+      
+      <div class="detail-group">
+        <label>Amount</label>
+        <div class="val huge" id="pAmount">-</div>
+      </div>
+      <div class="detail-group">
+        <label>Payee / Merchant</label>
+        <div class="val" id="pPayee" style="font-weight: 600;">-</div>
+      </div>
+      <div class="detail-group">
+        <label>Transaction ID</label>
+        <div class="val" id="pTxnId" style="font-family: monospace; color: var(--accent);">-</div>
+      </div>
+      <div class="detail-group">
+        <label>Date & Time</label>
+        <div class="val" id="pDateTime">-</div>
+      </div>
+      <div class="detail-group">
+        <label>Description</label>
+        <div class="val" id="pDesc">-</div>
+      </div>
+      <div class="detail-group">
+        <label>Channel</label>
+        <div class="val"><span class="channel-badge" id="pChannel">-</span></div>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
     <div class="dashboard-top">
@@ -359,313 +364,177 @@
     const API = '';
     let allTransactions = [];
     let citedIds = new Set();
-    let latestReportRaw = null; // Store for PDF export
+    let latestReportRaw = null; 
 
-    // ── Dummy Customer Data ───────────────────────────────────────────────────
     const CUSTOMER_DB = {
-      'clean_customer': {
-        name: 'Aarav Sharma', initials: 'AS', acc: 'ACC-XXXX-4592', 
-        status: '<span style="color:#10b981">Active</span>', since: 'Mar 2021', tier: 'Low'
-      },
-      'borderline_customer': {
-        name: 'Rahul Desai', initials: 'RD', acc: 'ACC-XXXX-2109', 
-        status: '<span style="color:#f59e0b">Under Observation</span>', since: 'Aug 2022', tier: 'Low'
-      },
-      'layered_anomaly_customer': {
-        name: 'Neha Gupta', initials: 'NG', acc: 'ACC-XXXX-8812', 
-        status: '<span style="color:#10b981">Active</span>', since: 'Jan 2024', tier: 'Medium'
-      }
+      'clean_customer': { name: 'Aarav Sharma', initials: 'AS', acc: 'ACC-XXXX-4592', status: '<span style="color:#10b981">Active</span>', since: 'Mar 2021', tier: 'Low' },
+      'borderline_customer': { name: 'Rahul Desai', initials: 'RD', acc: 'ACC-XXXX-2109', status: '<span style="color:#f59e0b">Under Observation</span>', since: 'Aug 2022', tier: 'Low' },
+      'layered_anomaly_customer': { name: 'Neha Gupta', initials: 'NG', acc: 'ACC-XXXX-8812', status: '<span style="color:#10b981">Active</span>', since: 'Jan 2024', tier: 'Medium' }
     };
 
     document.getElementById('customerSelect').addEventListener('change', (e) => {
       const id = e.target.value;
       const btn = document.getElementById('runBtn');
       const panel = document.getElementById('customerPanel');
-      document.getElementById('exportBtn').style.display = 'none'; // hide until run
+      document.getElementById('exportBtn').style.display = 'none';
       
       if (!id) {
-        btn.disabled = true;
-        panel.classList.remove('active');
-        document.getElementById('cAvatar').textContent = '?';
-        document.getElementById('cName').textContent = 'Select a customer';
-        document.getElementById('cAcc').textContent = 'Account info will appear here';
-        document.getElementById('cStatus').textContent = '-';
-        document.getElementById('cSince').textContent = '-';
-        document.getElementById('cTier').textContent = '-';
+        btn.disabled = true; panel.classList.remove('active');
+        document.getElementById('cAvatar').textContent = '?'; document.getElementById('cName').textContent = 'Select a customer';
+        document.getElementById('cAcc').textContent = 'Account info will appear here'; document.getElementById('cStatus').textContent = '-';
+        document.getElementById('cSince').textContent = '-'; document.getElementById('cTier').textContent = '-';
         return;
       }
       
-      btn.disabled = false;
-      panel.classList.add('active');
+      btn.disabled = false; panel.classList.add('active');
       const data = CUSTOMER_DB[id] || {name: id, initials: 'XX', acc: 'Unknown', status: 'Active', since: '-', tier: '-'};
       
-      document.getElementById('cAvatar').textContent = data.initials;
-      document.getElementById('cName').textContent = data.name;
-      document.getElementById('cAcc').textContent = data.acc;
-      document.getElementById('cStatus').innerHTML = data.status;
-      document.getElementById('cSince').textContent = data.since;
-      document.getElementById('cTier').textContent = data.tier;
+      document.getElementById('cAvatar').textContent = data.initials; document.getElementById('cName').textContent = data.name;
+      document.getElementById('cAcc').textContent = data.acc; document.getElementById('cStatus').innerHTML = data.status;
+      document.getElementById('cSince').textContent = data.since; document.getElementById('cTier').textContent = data.tier;
     });
 
-
-    // ── Load customers ────────────────────────────────────────────────────────
     async function loadCustomers() {
       try {
         const res = await fetch(`${API}/api/customers`);
         const data = await res.json();
         const sel = document.getElementById('customerSelect');
         data.customers.forEach(id => {
-          const opt = document.createElement('option');
-          opt.value = id;
-          const prettyName = CUSTOMER_DB[id] ? `${CUSTOMER_DB[id].name} (${id.replace(/_/g, ' ')})` : id;
-          opt.textContent = prettyName;
+          const opt = document.createElement('option'); opt.value = id;
+          opt.textContent = CUSTOMER_DB[id] ? `${CUSTOMER_DB[id].name} (${id.replace(/_/g, ' ')})` : id;
           sel.appendChild(opt);
         });
-      } catch (e) {
-        showError('Failed to load customers. Is the backend running?');
-      }
+      } catch (e) { showError('Failed to load customers. Is the backend running?'); }
     }
 
-    // ── Run investigation ─────────────────────────────────────────────────────
     document.getElementById('runBtn').addEventListener('click', async () => {
       const customerId = document.getElementById('customerSelect').value;
       if (!customerId) return;
-      clearUI();
-      setLoading(true);
+      clearUI(); setLoading(true);
       try {
         const [investRes, txnRes] = await Promise.all([
           fetch(`${API}/api/customers/${customerId}/investigate`),
           fetch(`${API}/api/customers/${customerId}/transactions`),
         ]);
-
-        if (!investRes.ok) throw new Error(`Investigation failed: ${investRes.status}`);
-        if (!txnRes.ok) throw new Error(`Transactions failed: ${txnRes.status}`);
+        if (!investRes.ok) throw new Error(`Investigation failed`);
+        if (!txnRes.ok) throw new Error(`Transactions failed`);
 
         const investData = await investRes.json();
         const txnData = await txnRes.json();
         
         latestReportRaw = investData;
         allTransactions = txnData.transactions || [];
-        
-        // Show download button
         document.getElementById('exportBtn').style.display = 'block';
 
         renderReport(investData);
         renderHistory();
         renderNetworkGraph(allTransactions, investData.report.findings);
-        
-      } catch (e) {
-        showError(e.message);
-      } finally {
-        setLoading(false);
-      }
+      } catch (e) { showError(e.message); } finally { setLoading(false); }
     });
 
-    // ── Network Graph Logic ───────────────────────────────────────────────────
     function renderNetworkGraph(transactions, findings) {
       document.getElementById('graphSection').style.display = 'block';
       const container = document.getElementById('networkGraph');
+      const customerData = CUSTOMER_DB[document.getElementById('customerSelect').value] || {name: 'Customer'};
       
-      const customerId = document.getElementById('customerSelect').value;
-      const customerData = CUSTOMER_DB[customerId] || {name: customerId};
-      
-      // Determine suspicious txns to flag payees
       const suspiciousTxnIds = new Set();
       findings.forEach(f => (f.txn_ids || []).forEach(tid => suspiciousTxnIds.add(tid)));
       
-      // We will group by payee
       const payeeMap = {}; 
       transactions.forEach(t => {
-        if (!payeeMap[t.payee]) payeeMap[t.payee] = { count: 0, total: 0, suspicious: false };
+        if (!payeeMap[t.payee]) payeeMap[t.payee] = { count: 0, total: 0, suspicious: false, txnIds: [] };
         payeeMap[t.payee].count += 1;
         payeeMap[t.payee].total += t.amount;
-        if (suspiciousTxnIds.has(t.txn_id)) {
-          payeeMap[t.payee].suspicious = true;
-        }
+        payeeMap[t.payee].txnIds.push(t.txn_id);
+        if (suspiciousTxnIds.has(t.txn_id)) payeeMap[t.payee].suspicious = true;
       });
 
-      // Nodes
       const nodes = new vis.DataSet([{ 
         id: 0, label: customerData.name, shape: 'circularImage', 
         image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%233b82f6"/><text x="50" y="65" font-family="Arial" font-size="40" fill="white" text-anchor="middle">C</text></svg>',
         size: 35, font: { color: '#f1f5f9', size: 14 }
       }]);
 
-      let nodeId = 1;
-      const edges = new vis.DataSet([]);
-
+      let nodeId = 1; const edges = new vis.DataSet([]);
       Object.entries(payeeMap).forEach(([payee, data]) => {
-        // Skip tiny one-off routine payees if network gets too crowded, 
-        // but for <100 payees it's fine. We'll show all.
-        
         let color = data.suspicious ? '#ef4444' : '#94a3b8';
-        let size = Math.max(10, Math.min(30, 10 + (data.count * 2))); // scale by count
-        
-        nodes.add({
-          id: nodeId, label: payee, 
-          shape: 'dot', color: color, size: size,
-          font: { color: data.suspicious ? '#fca5a5' : '#cbd5e1', size: data.suspicious ? 14 : 11 }
-        });
-        
-        edges.add({
-          from: 0, to: nodeId,
-          value: data.total, // Edge thickness based on total amount
-          color: { color: data.suspicious ? 'rgba(239, 68, 68, 0.6)' : 'rgba(148, 163, 184, 0.2)' }
-        });
-        
+        let size = Math.max(10, Math.min(30, 10 + (data.count * 2)));
+        nodes.add({ id: nodeId, label: payee, shape: 'dot', color: color, size: size, font: { color: data.suspicious ? '#fca5a5' : '#cbd5e1', size: data.suspicious ? 14 : 11 } });
+        edges.add({ from: 0, to: nodeId, value: data.total, color: { color: data.suspicious ? 'rgba(239, 68, 68, 0.6)' : 'rgba(148, 163, 184, 0.2)' } });
         nodeId++;
       });
 
-      const networkData = { nodes: nodes, edges: edges };
       const options = {
         nodes: { borderWidth: 0 },
         edges: { smooth: { type: 'continuous' } },
+        interaction: { zoomSpeed: 0.3 }, /* <-- Reduced zoom speed for better control */
         physics: {
-          forceAtlas2Based: { gravitationalConstant: -50, centralGravity: 0.01, springLength: 100, springConstant: 0.08 },
-          maxVelocity: 50, solver: 'forceAtlas2Based', timestep: 0.35, stabilization: { iterations: 150 }
+          forceAtlas2Based: { gravitationalConstant: -40, centralGravity: 0.005, springLength: 120, springConstant: 0.08, damping: 0.8 },
+          maxVelocity: 30, solver: 'forceAtlas2Based', timestep: 0.3, stabilization: { iterations: 150 }
         }
       };
-      
-      new vis.Network(container, networkData, options);
+      new vis.Network(container, { nodes, edges }, options);
     }
 
-    // ── Export / Download ─────────────────────────────────────────────────────
     document.getElementById('exportBtn').addEventListener('click', () => {
       if (!latestReportRaw) return;
       const cId = document.getElementById('customerSelect').value;
       const customerData = CUSTOMER_DB[cId];
-      
-      // Build a readable text report
-      let text = `====================================================\n`;
-      text += `FRAUD INVESTIGATION REPORT\n`;
-      text += `====================================================\n`;
-      text += `Customer Name : ${customerData ? customerData.name : cId}\n`;
-      text += `Account ID    : ${customerData ? customerData.acc : 'Unknown'}\n`;
-      text += `Status        : ${latestReportRaw.report.status.toUpperCase()}\n`;
-      text += `Report Source : ${latestReportRaw.report.source === 'llm' ? 'Gemini AI Synthesis' : 'Fallback Engine'}\n\n`;
-      text += `HEADLINE: ${latestReportRaw.report.headline}\n\n`;
-      
+      let text = `====================================================\nFRAUD INVESTIGATION REPORT\n====================================================\nCustomer Name : ${customerData ? customerData.name : cId}\nAccount ID    : ${customerData ? customerData.acc : 'Unknown'}\nStatus        : ${latestReportRaw.report.status.toUpperCase()}\nReport Source : ${latestReportRaw.report.source === 'llm' ? 'Gemini AI Synthesis' : 'Fallback Engine'}\n\nHEADLINE: ${latestReportRaw.report.headline}\n\n`;
       if (latestReportRaw.report.findings.length > 0) {
         text += `FINDINGS:\n`;
         latestReportRaw.report.findings.forEach(f => {
-          text += `\n[${f.rule_id}] ${ruleNameMap[f.rule_id] || f.rule_id}\n`;
-          text += `----------------------------------------------------\n`;
-          text += `Narrative   : ${f.narrative}\n`;
-          text += `Check First : ${f.check_first}\n`;
-          text += `Cited Txns  : ${f.txn_ids.join(', ')}\n`;
+          text += `\n[${f.rule_id}] ${ruleNameMap[f.rule_id] || f.rule_id}\n----------------------------------------------------\nNarrative   : ${f.narrative}\nCheck First : ${f.check_first}\nCited Txns  : ${f.txn_ids.join(', ')}\n`;
         });
-      } else {
-        text += `No anomalies detected. Customer profile matches baseline.\n`;
-      }
-      
+      } else { text += `No anomalies detected. Customer profile matches baseline.\n`; }
       const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Investigation_Report_${cId}.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      const a = document.createElement('a'); a.href = url; a.download = `Investigation_Report_${cId}.txt`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
     });
 
-    // ── Render report ─────────────────────────────────────────────────────────
     function renderReport(data) {
-      const report = data.report;
-      const rawFindings = data.raw_findings || [];
-      const profile = data.profile || {};
-
-      // Banner
+      const report = data.report; const rawFindings = data.raw_findings || []; const profile = data.profile || {};
       const banner = document.getElementById('banner');
       const cls = report.status === 'clean' ? 'clean' : (report.status === 'investigate' ? 'investigate' : 'review');
-      const labelMap = { 
-        clean: '<i class="fa-solid fa-circle-check"></i> Account Clean', 
-        review_recommended: '<i class="fa-solid fa-triangle-exclamation"></i> Review Recommended', 
-        investigate: '<i class="fa-solid fa-radiation"></i> Investigate Immediately' 
-      };
+      const labelMap = { clean: '<i class="fa-solid fa-circle-check"></i> Account Clean', review_recommended: '<i class="fa-solid fa-triangle-exclamation"></i> Review Recommended', investigate: '<i class="fa-solid fa-radiation"></i> Investigate Immediately' };
       
-      banner.className = cls;
-      banner.style.display = 'block';
+      banner.className = cls; banner.style.display = 'block';
       document.getElementById('bannerStatus').innerHTML = labelMap[report.status] || report.status;
       document.getElementById('bannerHeadline').textContent = report.headline;
-      document.getElementById('bannerSource').innerHTML = report.source === 'fallback' 
-        ? '<i class="fa-solid fa-robot"></i> Deterministic Engine (Fallback)' 
-        : '<i class="fa-solid fa-sparkles"></i> Gemini AI Report';
+      document.getElementById('bannerSource').innerHTML = report.source === 'fallback' ? '<i class="fa-solid fa-robot"></i> Deterministic Engine (Fallback)' : '<i class="fa-solid fa-sparkles"></i> Gemini AI Report';
 
-      // Profile pills
       const profileRow = document.getElementById('profileRow');
       profileRow.style.display = 'grid';
-      profileRow.innerHTML = `
-        <div class="stat-card">
-          <div class="stat-header"><span class="label">Avg Transaction</span><i class="fa-solid fa-money-bill-wave"></i></div>
-          <div class="val">₹${profile.mean_amount?.toLocaleString()}</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-header"><span class="label">Historical Max</span><i class="fa-solid fa-arrow-trend-up"></i></div>
-          <div class="val">₹${profile.max_amount?.toLocaleString()}</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-header"><span class="label">Standard Hrs</span><i class="fa-regular fa-clock"></i></div>
-          <div class="val">${profile.active_hour_p10}:00 - ${profile.active_hour_p90}:59</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-header"><span class="label">Preferred Channel</span><i class="fa-solid fa-mobile-screen"></i></div>
-          <div class="val" style="text-transform: capitalize;">${profile.dominant_channel}</div>
-        </div>
-      `;
+      profileRow.innerHTML = `<div class="stat-card"><div class="stat-header"><span class="label">Avg Transaction</span><i class="fa-solid fa-money-bill-wave"></i></div><div class="val">₹${profile.mean_amount?.toLocaleString()}</div></div><div class="stat-card"><div class="stat-header"><span class="label">Historical Max</span><i class="fa-solid fa-arrow-trend-up"></i></div><div class="val">₹${profile.max_amount?.toLocaleString()}</div></div><div class="stat-card"><div class="stat-header"><span class="label">Standard Hrs</span><i class="fa-regular fa-clock"></i></div><div class="val">${profile.active_hour_p10}:00 - ${profile.active_hour_p90}:59</div></div><div class="stat-card"><div class="stat-header"><span class="label">Preferred Channel</span><i class="fa-solid fa-mobile-screen"></i></div><div class="val" style="text-transform: capitalize;">${profile.dominant_channel}</div></div>`;
 
-      // Findings
       citedIds = new Set();
       report.findings.forEach(f => (f.txn_ids || []).forEach(id => citedIds.add(id)));
 
       const fc = document.getElementById('findingsContainer');
       if (report.findings.length === 0) {
-        fc.innerHTML = `
-          <div class="finding-card" style="text-align: center; padding: 40px; color: var(--text-muted);">
-            <i class="fa-regular fa-face-smile" style="font-size: 32px; margin-bottom: 12px; color: var(--success);"></i>
-            <p>No anomalies detected. All transactions align with established baseline behavior.</p>
-          </div>`;
+        fc.innerHTML = `<div class="finding-card" style="text-align: center; padding: 40px; color: var(--text-muted);"><i class="fa-regular fa-face-smile" style="font-size: 32px; margin-bottom: 12px; color: var(--success);"></i><p>No anomalies detected. All transactions align with established baseline behavior.</p></div>`;
       } else {
         report.findings.forEach((f, i) => {
           const raw = rawFindings.find(r => r.rule_id === f.rule_id) || {};
           const severity = raw.severity || 'medium';
           const cited = (f.txn_ids || []).map(tid => allTransactions.find(t => t.txn_id === tid)).filter(Boolean);
-
-          const card = document.createElement('div');
-          card.className = `finding-card severity-${severity}`;
-          card.innerHTML = `
-            <div class="finding-header">
-              <span class="rule-badge"><i class="fa-solid fa-fingerprint"></i> ${f.rule_id}</span>
-              <span class="severity-badge ${severity}">${severity} Priority</span>
-              <span class="finding-name">${ruleNameMap[f.rule_id] || f.rule_id}</span>
-            </div>
-            <div class="narrative">${f.narrative}</div>
-            <div class="check-first">
-              <strong><i class="fa-solid fa-clipboard-list"></i> Investigator Action Required</strong>
-              ${f.check_first}
-            </div>
-            <div class="cited-title">Flagged Evidence (${cited.length} Transactions)</div>
-            <div class="table-container">
-              ${buildTxnTable(cited)}
-            </div>
-          `;
+          const card = document.createElement('div'); card.className = `finding-card severity-${severity}`;
+          card.innerHTML = `<div class="finding-header"><span class="rule-badge"><i class="fa-solid fa-fingerprint"></i> ${f.rule_id}</span><span class="severity-badge ${severity}">${severity} Priority</span><span class="finding-name">${ruleNameMap[f.rule_id] || f.rule_id}</span></div><div class="narrative">${f.narrative}</div><div class="check-first"><strong><i class="fa-solid fa-clipboard-list"></i> Investigator Action Required</strong>${f.check_first}</div><div class="cited-title">Flagged Evidence (${cited.length} Transactions)</div><div class="table-container">${buildTxnTable(cited)}</div>`;
           fc.appendChild(card);
         });
       }
-
       document.getElementById('findingsSection').style.display = 'block';
     }
 
-    const ruleNameMap = {
-      R1: 'Unusually Large Transfer', R2: 'Burst to Newly Added Payee',
-      R3: 'Odd-Hours Activity', R4: 'Pattern Break',
-    };
+    const ruleNameMap = { R1: 'Unusually Large Transfer', R2: 'Burst to Newly Added Payee', R3: 'Odd-Hours Activity', R4: 'Pattern Break' };
 
     function buildTxnTable(txns) {
       if (!txns.length) return '<div style="padding: 16px; color: var(--text-muted);">No transactions cited.</div>';
       const rows = txns.map(t => {
         const isOddHour = t.hour < 6 || t.hour > 22;
-        return `<tr>
+        // Added clickable-row class and data-id attribute for popup logic
+        return `<tr class="clickable-row" data-id="${t.txn_id}">
           <td><span class="txn-id">${t.txn_id}</span></td>
           <td>${t.date}</td>
           <td>${t.payee}</td>
@@ -678,7 +547,6 @@
       return `<table><thead><tr><th>TXN ID</th><th>Date</th><th>Payee</th><th>Description</th><th>Amount (₹)</th><th>Channel</th><th>Hour</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
 
-    // ── Full history ──────────────────────────────────────────────────────────
     function renderHistory() {
       const body = document.getElementById('historyBody');
       body.innerHTML = '';
@@ -686,7 +554,9 @@
         const isOddHour = t.hour < 6 || t.hour > 22;
         const isCited = citedIds.has(t.txn_id);
         const tr = document.createElement('tr');
-        if (isCited) tr.classList.add('highlighted');
+        // Added clickable-row and data-id
+        tr.className = `clickable-row ${isCited ? 'highlighted' : ''}`;
+        tr.dataset.id = t.txn_id;
         tr.innerHTML = `
           <td><span class="txn-id">${t.txn_id}</span></td>
           <td>${t.date}</td>
@@ -702,14 +572,46 @@
     }
 
     document.getElementById('historyToggle').addEventListener('click', () => {
-      const wrap = document.getElementById('historyTableWrap');
-      const icon = document.getElementById('historyIcon');
+      const wrap = document.getElementById('historyTableWrap'); const icon = document.getElementById('historyIcon');
       const open = wrap.style.display === 'block';
-      wrap.style.display = open ? 'none' : 'block';
-      icon.className = open ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-up';
+      wrap.style.display = open ? 'none' : 'block'; icon.className = open ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-up';
     });
 
-    // ── Utilities ─────────────────────────────────────────────────────────────
+    // ── Slide Pop Panel Logic ────────────────────────────────────────────────
+    function openSlidePanel(txnId) {
+      const txn = allTransactions.find(t => t.txn_id === txnId);
+      if(!txn) return;
+      
+      const isSuspicious = citedIds.has(txn.txn_id);
+      document.getElementById('pFlagged').style.display = isSuspicious ? 'flex' : 'none';
+      
+      document.getElementById('pTxnId').textContent = txn.txn_id;
+      document.getElementById('pAmount').textContent = `₹${Number(txn.amount).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+      document.getElementById('pPayee').textContent = txn.payee;
+      document.getElementById('pDateTime').textContent = `${txn.date} | ${txn.hour}:00`;
+      document.getElementById('pDesc').textContent = txn.description;
+      document.getElementById('pChannel').textContent = txn.channel;
+
+      document.getElementById('slideOverlay').classList.add('active');
+      document.getElementById('slidePanel').classList.add('open');
+    }
+
+    function closeSlidePanel() {
+      document.getElementById('slideOverlay').classList.remove('active');
+      document.getElementById('slidePanel').classList.remove('open');
+    }
+
+    document.getElementById('slideClose').addEventListener('click', closeSlidePanel);
+    document.getElementById('slideOverlay').addEventListener('click', closeSlidePanel);
+
+    // Event delegation for table row clicks
+    document.addEventListener('click', function(e) {
+      const row = e.target.closest('.clickable-row');
+      if (row && row.dataset.id) {
+        openSlidePanel(row.dataset.id);
+      }
+    });
+
     function setLoading(on) {
       document.getElementById('spinner').style.display = on ? 'block' : 'none';
       document.getElementById('btnText').style.display = on ? 'none' : 'block';
@@ -719,23 +621,17 @@
     }
 
     function clearUI() {
-      document.getElementById('banner').style.display = 'none';
-      document.getElementById('profileRow').style.display = 'none';
-      document.getElementById('graphSection').style.display = 'none';
-      document.getElementById('findingsSection').style.display = 'none';
-      document.getElementById('historySection').style.display = 'none';
-      document.getElementById('historyTableWrap').style.display = 'none';
-      document.getElementById('findingsContainer').innerHTML = '';
-      document.getElementById('historyBody').innerHTML = '';
+      document.getElementById('banner').style.display = 'none'; document.getElementById('profileRow').style.display = 'none';
+      document.getElementById('graphSection').style.display = 'none'; document.getElementById('findingsSection').style.display = 'none';
+      document.getElementById('historySection').style.display = 'none'; document.getElementById('historyTableWrap').style.display = 'none';
+      document.getElementById('findingsContainer').innerHTML = ''; document.getElementById('historyBody').innerHTML = '';
       document.getElementById('errorBox').style.display = 'none';
-      allTransactions = [];
-      citedIds = new Set();
+      allTransactions = []; citedIds = new Set();
     }
 
     function showError(msg) {
       const box = document.getElementById('errorBox');
-      box.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>${msg}</span>`;
-      box.style.display = 'flex';
+      box.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>${msg}</span>`; box.style.display = 'flex';
     }
 
     // Init
